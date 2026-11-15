@@ -1,3 +1,7 @@
+// What: a shared plugin that adds `app.appInfo` (name, version, start time).
+// Why: wrapped in fastify-plugin (fp) so the decorator is visible to every
+// module, not just inside this plugin.
+
 import fp from "fastify-plugin";
 
 async function appInfoPlugin(app, options) {

@@ -1,3 +1,6 @@
+// What: the entry point. It builds the app, starts listening, and shuts down cleanly.
+// Why: keeping startup separate from app.js means tests never open a real port.
+
 import { buildApp } from "./app.js";
 import { config } from "./config/env.js";
 

@@ -1,0 +1,33 @@
+// What: the single source of truth for Rentify's database structure.
+// Why: Prisma reads this file to (1) create migrations, the SQL that builds
+// your tables, and (2) generate a client with methods like
+// prisma.property.findMany().
+// When you change it: run `npm run db:migrate`, then `npm run db:generate`.
+
+generator client {
+  provider            = "prisma-client"
+  output              = "../src/generated/prisma"
+  moduleFormat        = "esm"
+  importFileExtension = "ts"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Property {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  city        String
+  address     String
+  price       Int
+  currency    String   @default("PKR")
+  bedrooms    Int
+  bathrooms   Int
+  isAvailable Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([city])
+}
